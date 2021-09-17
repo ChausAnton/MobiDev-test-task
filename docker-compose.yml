@@ -1,0 +1,18 @@
+version: '3'
+services: 
+  server:
+    image: docker-mobidev-test
+    build: ./server
+    command: node app.js
+    ports:
+      - "5000:5000"
+    volumes: 
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - "mongo"
+  mongo:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+  
